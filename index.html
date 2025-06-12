@@ -8,14 +8,38 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Navigation Bar with Hamburger Menu and Logo -->
+    <nav class="navbar">
+        <!-- Charity: water logo on the left -->
+        <a href="#" class="logo-link">
+            <img src="img/cw_logo.png" alt="charity: water logo" class="logo">
+        </a>
+        <!-- Hamburger icon -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Open menu">
+            <!-- Three lines for hamburger icon -->
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <!-- Dropdown menu, hidden by default -->
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Donate</a>
+        </div>
+    </nav>
+
     <!-- Hero Section: Full-screen background image with centered content -->
     <section class="hero">
-        <!-- Big headline -->
-        <h1>CLEAN WATER, REAL IMPACT</h1>
-        <!-- Short subheadline -->
-        <p>Together, we can bring safe water to every community.</p>
-        <!-- Join button -->
-        <a href="#" class="join-button">JOIN THE MOVEMENT</a>
+        <!-- Add a wrapper for hero content to apply animation -->
+        <div class="hero-content">
+            <!-- Big headline -->
+            <h1>CLEAN WATER, REAL IMPACT</h1>
+            <!-- Short subheadline -->
+            <p>Together, we can bring safe water to every community.</p>
+            <!-- Join button -->
+            <a href="#" class="join-button">JOIN THE MOVEMENT</a>
+        </div>
     </section>
 
     <!-- Story Section: Shows the impact of clean water -->
@@ -34,5 +58,20 @@
         <p>Your donation brings clean, safe water to people in need. Every gift matters.</p>
         <a href="#" class="donate-button">DONATE NOW</a>
     </section>
+
+    <script>
+    // Simple JavaScript to toggle the dropdown menu
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    hamburgerBtn.addEventListener('click', function() {
+        dropdownMenu.classList.toggle('show');
+    });
+    // Optional: Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!hamburgerBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+    </script>
 </body>
 </html>

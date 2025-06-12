@@ -142,7 +142,8 @@ section {
 }
 
 /* Style for the Donate button */
-.donate-button {
+.donate-button,
+.cta-button {
     background-color: #fff;
     color: #FF902A;
     padding: 15px 35px;
@@ -150,15 +151,18 @@ section {
     font-weight: bold;
     border-radius: 30px;
     font-size: 1.1em;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, transform 0.2s; /* Add transform for smooth scaling */
     border: none;
     display: inline-block;
 }
 
-.donate-button:hover {
-    background-color: #FFC907;
-    color: #222;
+/* Hover effect for Donate and CTA buttons */
+.donate-button:hover,
+.cta-button:hover {
+    background-color: #FF902A;
+    color: #fff;
     cursor: pointer;
+    transform: scale(1.05); /* Slightly grow the button */
 }
 
 /* Add some spacing between sections */
@@ -166,52 +170,124 @@ section {
   margin-bottom: 20px;
 }
 
-/* 
-  Media Queries for Responsive Design
-  These styles help the page look good on small screens like phones.
-*/
-@media (max-width: 600px) {
-  /* Make the hero section padding smaller on small screens */
-  .hero {
-    padding: 32px 8px;
-    min-height: 60vh; /* Reduce height on mobile */
+/* Keyframe animation to fade in and move up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
-
-  /* Make the headline font size smaller so it fits on small screens */
-  .hero h1 {
-    font-size: 1.4em;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  /* Make subheadline font size smaller */
-  .hero p {
-    font-size: 1em;
-  }
+/* Apply the fadeInUp animation to hero content */
+.hero-content {
+  animation: fadeInUp 1s ease-out;
+}
 
-  /* Make the join button a bit smaller */
-  .hero .join-button {
-    padding: 12px 22px;
-    font-size: 1em;
-  }
+/* Navbar styles */
+.navbar {
+  width: 100%;
+  position: fixed; /* Stay at the top */
+  top: 0;
+  right: 0;
+  background: transparent; /* No background for simplicity */
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 18px 18px 0 0;
+  box-sizing: border-box;
+}
 
-  /* Make the story section padding smaller */
-  .story {
-    padding: 18px 8px;
-  }
+/* Logo styles */
+.logo-link {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-right: auto; /* Push hamburger to the right */
+  margin-left: 10px;
+  z-index: 102;
+  text-decoration: none;
+}
 
-  /* Make the story image smaller */
-  .story-image {
-    max-width: 180px;
-  }
+.logo {
+  height: 38px;
+  width: auto;
+  max-width: 140px;
+  display: block;
+}
 
-  /* Make the call-to-action section padding smaller */
-  .call-to-action {
-    padding: 18px 8px;
-  }
+/* Hamburger button styles */
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  z-index: 101;
+}
 
-  /* Make the donate button a bit smaller */
-  .donate-button {
-    padding: 10px 18px;
-    font-size: 1em;
+/* Hamburger bars */
+.hamburger .bar {
+  width: 28px;
+  height: 3px;
+  background-color: #2E9DF7; /* Charity: water blue */
+  border-radius: 2px;
+  display: block;
+  transition: background 0.2s;
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 48px;
+  right: 18px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(46,157,247,0.12);
+  min-width: 120px;
+  flex-direction: column;
+  padding: 10px 0;
+  text-align: right;
+}
+
+/* Show the dropdown when .show class is added */
+.dropdown-menu.show {
+  display: flex;
+}
+
+/* Dropdown links */
+.dropdown-menu a {
+  color: #2E9DF7;
+  text-decoration: none;
+  padding: 10px 22px;
+  display: block;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background: #FFC907;
+  color: #222;
+  border-radius: 4px;
+}
+
+/* Make sure navbar does not overlap hero content */
+.hero {
+  margin-top: 60px;
+}
+
+/* Responsive: On larger screens, show menu horizontally if desired */
+@media (min-width: 600px) {
+  .dropdown-menu {
+    right: 28px;
   }
 }
 
@@ -230,5 +306,16 @@ section {
 
   .impact-image {
     width: 300px;
+  }
+}
+
+/* On small screens, make logo smaller and add spacing */
+@media (max-width: 600px) {
+  .logo {
+    height: 28px;
+    max-width: 90px;
+  }
+  .logo-link {
+    margin-left: 4px;
   }
 }
